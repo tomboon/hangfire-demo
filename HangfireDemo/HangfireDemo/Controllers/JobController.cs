@@ -16,10 +16,16 @@ namespace HangfireDemo.Controllers
         }
 
         [HttpPost("StartFailedJob")]
-        [AutomaticRetry(Attempts = 2)]
         public IActionResult StartFailedJob()
         {
             BackgroundJob.Enqueue<FailedJob>(job => job.Execute());
+            return Ok();
+        }
+
+        [HttpPost("StartRecurringJob")]
+        public IActionResult StartRecurringJob()
+        {
+            RecurringJob.AddOrUpdate<ExampleRecurringJob>(job => job.Execute(), Cron.Minutely);
             return Ok();
         }
     }

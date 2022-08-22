@@ -1,5 +1,8 @@
-﻿namespace HangfireDemo.Common
+﻿using Hangfire;
+
+namespace HangfireDemo.Common
 {
+    [AutomaticRetry(Attempts = 2)]
     public class FailedJob
     {
         public async Task Execute()

@@ -6,8 +6,8 @@ GlobalConfiguration.Configuration.UseSqlServerStorage(@"Server=(local);Data Sour
 
 var options = new BackgroundJobServerOptions
 {
-    ServerName = "hangfire server 1",
-    Queues = new[] { "server1" },
+    ServerName = "hangfire server 2",
+    Queues = new[] { "server2" },
 };
 
 using (var server = new BackgroundJobServer(options))

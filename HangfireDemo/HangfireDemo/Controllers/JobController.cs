@@ -1,5 +1,6 @@
 using Hangfire;
 using HangfireDemo.Common;
+using HangfireDemo.Common2;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HangfireDemo.Controllers
@@ -12,6 +13,13 @@ namespace HangfireDemo.Controllers
         public IActionResult StartExampleJob([FromBody] int delayInSeconds)
         {
             BackgroundJob.Enqueue<ExampleJob>(job => job.Execute(new ExampleJobParameters { DelayInSeconds = delayInSeconds, Value = "whatever" }));
+            return Ok();
+        }
+
+        [HttpPost("StartExampleJob2")]
+        public IActionResult StartExampleJob2([FromBody] int delayInSeconds)
+        {
+            BackgroundJob.Enqueue<ExampleJob2>(job => job.Execute(new ExampleJob2Parameters { DelayInSeconds = delayInSeconds, Value = "whatever2" }));
             return Ok();
         }
 
